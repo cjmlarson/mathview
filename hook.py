@@ -47,6 +47,9 @@ def main() -> None:
     (MATHVIEW / "latest.md").write_text(text)
     subprocess.Popen([str(MATHVIEW / "serve.sh")],
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    print(json.dumps({"systemMessage":
+                      "math detected, view rendered here: "
+                      "http://localhost:8321/viewer.html"}))
 
 
 if __name__ == "__main__":
