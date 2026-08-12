@@ -47,6 +47,9 @@ def main() -> None:
     (MATHVIEW / "latest.md").write_text(text)
     subprocess.Popen([str(MATHVIEW / "serve.sh")],
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # TODO: systemMessage not appearing in the Claude Code TUI even after
+    # /hooks reload (2026-08-12). Check if a full Claude Code restart fixes
+    # it; if not, debug (async vs sync output handling? focus mode?) and fix.
     print(json.dumps({"systemMessage":
                       "math detected, view rendered here: "
                       "http://localhost:8321/viewer.html"}))
