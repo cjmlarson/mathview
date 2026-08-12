@@ -33,7 +33,7 @@
 <div id="meta">connecting…</div>
 <div id="out"></div>
 <script>
-let last = null;
+let last = null, lastUpdate = null;
 
 function render(md) {
   const stash = [];
@@ -63,9 +63,10 @@ async function poll() {
       if (md !== last) {
         last = md;
         render(md);
-        document.getElementById("meta").textContent =
-          "updated " + new Date().toLocaleTimeString();
+        lastUpdate = new Date().toLocaleTimeString();
       }
+      document.getElementById("meta").textContent =
+        lastUpdate ? "updated " + lastUpdate : "waiting for content…";
     }
   } catch (e) {
     document.getElementById("meta").textContent = "server unreachable — is serve.sh running?";
